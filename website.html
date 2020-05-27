@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+    <head>   
+        <title>CoronaTrack</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon_io/favicon.ico" />
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+        <style>
+            tr:nth-child(odd) {background-color: #212121;}
+            @font-face {font-family: "Roobert-Regular";
+            src: url("fonts/6228016f2b172c06410f3a2356d33f6c.eot"); /* IE9*/
+            src: url("fonts/6228016f2b172c06410f3a2356d33f6c.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+            url("fonts/6228016f2b172c06410f3a2356d33f6c.woff2") format("woff2"), /* chrome、firefox */
+            url("fonts/6228016f2b172c06410f3a2356d33f6c.woff") format("woff"), /* chrome、firefox */
+            url("fonts/6228016f2b172c06410f3a2356d33f6c.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url("fonts/6228016f2b172c06410f3a2356d33f6c.svg#Roobert-Regular") format("svg"); /* iOS 4.1- */
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #121212; padding-top: 3px; padding-bottom: 3px;">
+            <a class="navbar-brand mb-0 h3" href="file:///Users/raffertywong/Desktop/website/website.html"
+            style="font-size: 25px; color: #F5F2D0;">
+            <img src="favicon_io/android-chrome-512x512.png" width="40" height="40" class="d-inline-block" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" 
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="file:///Users/raffertywong/Desktop/website/about.html" 
+                            style="color: #F0F0FF; font-size: 27px;">
+                            &nbsp&nbsp&nbspAbout
+                        </a>
+                    </div>
+              </div>
+        </nav>
+       <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+            "symbols": [
+            {
+                "proName": "FOREXCOM:SPXUSD",
+                "title": "S&P 500"
+            },
+            {
+                "proName": "FOREXCOM:NSXUSD",
+                "title": "Nasdaq 100"
+            },
+            {
+                "proName": "FX_IDC:EURUSD",
+                "title": "EUR/USD"
+            },
+            {
+                "proName": "BITSTAMP:BTCUSD",
+                "title": "BTC/USD"
+            },
+            {
+                "proName": "BITSTAMP:ETHUSD",
+                "title": "ETH/USD"
+            },
+            {
+                "description": "Google",
+                "proName": "NASDAQ:GOOG"
+            },
+            {
+                "description": "Facebook",
+                "proName": "NASDAQ:FB"
+            },
+            {
+                "description": "Apple",
+                "proName": "NASDAQ:AAPL"
+            },
+            {
+                "description": "Amazon",
+                "proName": "NASDAQ:AMZN"
+            },
+            {
+                "description": "Microsoft",
+                "proName": "NASDAQ:MSFT"
+            },
+            {
+                "description": "Tesla",
+                "proName": "NASDAQ:TSLA"
+            }
+            ],
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "displayMode": "adaptive",
+            "locale": "en"
+            }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+        <div class="container-fluid roobert">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="container--wrap">
+                        <a class="twitter-timeline" href="https://twitter.com/CDCgov?ref_src=twsrc%5Etfw"
+                        data-height="750" data-theme="dark">
+                            Tweets by CDCgov
+                        </a> 
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 0px 5px 10px 5px;">
+                    <div class="container--wrap">
+                        <p style="font-size: 45px; color:#F0F0FF;
+                            text-align: center; font-weight: 600; margin-bottom: 0;">
+                            World Totals
+                        </p>
+                        <p style="font-size: 17px; color: #F0F0FF;
+                            text-align: center; font-weight: 525; margin-bottom: 20;">
+                            <i class="fa fa-bullhorn" style="font-weight: 800; font-size: 17px;"></i>
+                            Last updated: <span id="last_updated"></span>
+                        </p>
+                        <p style="font-size: 60px; color: #F5F2D0; 
+                            text-align: center; font-weight: 600; margin-bottom: 0";
+                            id="total_confirmed">
+                        </p>
+                        <p style="font-size: 22px; color: #F0F0FF; 
+                            font-weight: 600; text-align: center;">
+                            Confirmed
+                        </p>
+                        <p style=" font-size: 53px; color: #ffa500; 
+                            text-align: center; font-weight: 600; margin-bottom: 0;"
+                            id="total_critical">
+                        </p>
+                        <p style="font-size: 22px; color: #F0F0FF;
+                            font-weight: 600;text-align: center;">
+                            Critical
+                        </p> 
+                        <p style="font-size: 53px; color: rgb(248, 63, 85);
+                            text-align: center; font-weight: 600; margin-bottom: 0;"
+                            id="total_deaths">
+                        </p>
+                        <p style="  font-size: 22px; color: #F0F0FF;
+                            font-weight: 600; text-align: center;">
+                            Deaths
+                        </p>
+                        <p style="   font-size: 53px; color: rgb(34, 255, 133);
+                            text-align: center; font-weight: 600; margin-bottom: 0;"
+                            id="total_active">
+                        </p>
+                        <p style=" font-size: 22px; color: #F0F0FF;
+                            font-weight: 600; text-align: center;">
+                            Active
+                        </p>
+                        <p style=" font-size: 53px; color: #b2ffff;
+                            text-align: center; font-weight: 600; margin-bottom: 0;"
+                            id="total_recovered">
+                        </p>
+                        <p style="font-size: 22px; color: #F0F0FF;
+                            font-weight: 600; text-align: center;">
+                            Recovered
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container--wrap" style="height: 763px;">
+                        <p style="font-size: 35px; color:#F0F0FF; text-align: left;
+                            font-weight: bolder;">
+                            <i class="fas fa-map-pin" style="padding: 10px;"></i>
+                            Search by country
+                        </p>
+
+                        <p style="font-size: 15px; color:#F0F0FF; text-align: left;
+                            font-weight: bolder;">
+                            Coming soon...
+                        </p>
+                        
+
+                    </div>
+                </div>
+
+                <!--
+                <div class="col-xs-12 col-md-8 nopad">
+                    <div class="container--wrap">
+                        <p style="font-size: 30px; color:#D8DCE6; text-align: left;
+                            font-weight: bolder;">
+                            <i class="fa fa-globe mar-v-auto"></i>
+                            Overview
+                        </p>
+                        <table class="table mb-3">
+                            <thead>
+                                <tr style="background-color: #212121;">
+                                    <th>
+                                        <span style="color: #D8DCE6;">Country</span>
+                                    </th>
+                                    <th>
+                                        <span style="color: #D8DCE6;">Confirmed</span>
+                                    </th>
+                                    <th>
+                                        <span style="color: #D8DCE6">Critical</span>
+                                    </th>
+                                    <th>
+                                        <span style="color: #D8DCE6">Deaths</span>
+                                    </th>
+                                    <th>
+                                        <span style="color: #D8DCE6">Active</span>
+                                    </th>
+                                    <th>
+                                        <span style="color: #D8DCE6">Recovered</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                -->
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="container--wrap">
+                        <p style="font-size: 40px; color:#F0F0FF; text-align: left;
+                            font-weight: bolder;">
+                            <i class="fas fa-chart-line mar-v-auto" style="padding: 10px;"></i>
+                            Stocks
+                        </p>
+                        <!-- TradingView Widget BEGIN -->
+                            <div class="tradingview-widget-container__widget" style="display: inline-block; padding: 10px;">
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                            {
+                            "colorTheme": "dark",
+                            "dateRange": "12m",
+                            "showChart": true,
+                            "locale": "en",
+                            "largeChartUrl": "",
+                            "isTransparent": false,
+                            "width": "500",
+                            "height": "730",
+                            "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
+                            "plotLineColorFalling": "rgba(25, 118, 210, 1)",
+                            "gridLineColor": "rgba(42, 46, 57, 1)",
+                            "scaleFontColor": "rgba(120, 123, 134, 1)",
+                            "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+                            "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+                            "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+                            "tabs": [
+                            {
+                                "title": "Indices",
+                                "symbols": [
+                                {
+                                    "s": "FOREXCOM:SPXUSD",
+                                    "d": "S&P 500"
+                                },
+                                {
+                                    "s": "NASDAQ:GOOGL",
+                                    "d": "Google"
+                                },
+                                {
+                                    "s": "NASDAQ:AAPL",
+                                    "d": "Apple"
+                                },
+                                {
+                                    "s": "NYSE:TWTR",
+                                    "d": "Twitter"
+                                },
+                                {
+                                    "s": "NASDAQ:NFLX",
+                                    "d": "Netflix"
+                                },
+                                {
+                                    "s": "NASDAQ:TSLA",
+                                    "d": "Tesla"
+                                }
+                                ],
+                                "originalTitle": "Indices"
+                            },
+                            {
+                                "title": "Commodities",
+                                "symbols": [
+                                {
+                                    "s": "CME_MINI:ES1!",
+                                    "d": "E-Mini S&P"
+                                },
+                                {
+                                    "s": "CME:6E1!",
+                                    "d": "Euro"
+                                },
+                                {
+                                    "s": "COMEX:GC1!",
+                                    "d": "Gold"
+                                },
+                                {
+                                    "s": "NYMEX:CL1!",
+                                    "d": "Crude Oil"
+                                },
+                                {
+                                    "s": "NYMEX:NG1!",
+                                    "d": "Natural Gas"
+                                },
+                                {
+                                    "s": "CBOT:ZC1!",
+                                    "d": "Corn"
+                                }
+                                ],
+                                "originalTitle": "Commodities"
+                            },
+                            {
+                                "title": "Bonds",
+                                "symbols": [
+                                {
+                                    "s": "CME:GE1!",
+                                    "d": "Eurodollar"
+                                },
+                                {
+                                    "s": "CBOT:ZB1!",
+                                    "d": "T-Bond"
+                                },
+                                {
+                                    "s": "CBOT:UB1!",
+                                    "d": "Ultra T-Bond"
+                                },
+                                {
+                                    "s": "EUREX:FGBL1!",
+                                    "d": "Euro Bund"
+                                },
+                                {
+                                    "s": "EUREX:FBTP1!",
+                                    "d": "Euro BTP"
+                                },
+                                {
+                                    "s": "EUREX:FGBM1!",
+                                    "d": "Euro BOBL"
+                                }
+                                ],
+                                "originalTitle": "Bonds"
+                            },
+                            {
+                                "title": "Forex",
+                                "symbols": [
+                                {
+                                    "s": "FX:EURUSD"
+                                },
+                                {
+                                    "s": "FX:GBPUSD"
+                                },
+                                {
+                                    "s": "FX:USDJPY"
+                                },
+                                {
+                                    "s": "FX:USDCHF"
+                                },
+                                {
+                                    "s": "FX:AUDUSD"
+                                },
+                                {
+                                    "s": "FX:USDCAD"
+                                }
+                                ],
+                                "originalTitle": "Forex"
+                            }
+                            ]
+                            }
+                            </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container" style="float: right; padding: 10px;">
+                            <div id="tradingview_3bf15"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                            new TradingView.widget(
+                            {
+                            "width": 1050,
+                            "height": 730,
+                            "symbol": "SPX500USD",
+                            "interval": "D",
+                            "timezone": "Etc/UTC",
+                            "theme": "dark",
+                            "style": "2",
+                            "locale": "en",
+                            "toolbar_bg": "#f1f3f6",
+                            "enable_publishing": false,
+                            "withdateranges": true,
+                            "allow_symbol_change": true,
+                            "container_id": "tradingview_3bf15"
+                            }
+                            );
+                            </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center" style="padding-top: 5px;">
+            <small><a class="text-muted" href="https://twitter.com/rafferty_wong"
+                >coronatrack | Rafferty Wong - 2020</a>
+            </small>
+        </p>
+        <script src="js/cov.js"></script>
+        <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+</html>
