@@ -27,22 +27,87 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #121212; padding-top: 3px; padding-bottom: 3px;">
             <a class="navbar-brand mb-0 h3" href="file:///Users/raffertywong/Desktop/website/index.html"
-            style="font-size: 25px; color: #F5F2D0;">
-            <img src="icons/android-chrome-512x512.png" width="40" height="40" class="d-inline-block" alt="">
+                style="font-size: 25px; color: #F5F2D0; padding-right: 10px;">
+                <img src="icons/android-chrome-512x512.png" width="40" height="40" class="d-inline-block" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" 
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="text-align: center;">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="file:///Users/raffertywong/Desktop/website/about.html" 
                             style="color: #F0F0FF; font-size: 27px;">
-                            &nbsp&nbsp&nbspAbout
+                                About
                         </a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <form class="my-2 my-lg-0">
+                            <button onclick="togglePopup()" type="button" class="btn btn-dark" style="color: #F0F0FF;"> 
+                                Donate 
+                            </button>
+                        </form>
                     </div>
               </div>
         </nav>
+        <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content">
+              <div class="close-btn" onclick="togglePopup()">&times;</div>
+                <h1>
+                    Donate
+                </h1>
+                <p style="padding-bottom: 20px;"> All donations are greatly appreciated! </p>
+                <p style="font-size: 27px; color: #3D95CE; font-weight: bold; margin-bottom: 0;"> 
+                    <img src="icons/venmo.png" style="height: 30px; width: 30px; border-radius: 5px; margin-right: 5px;">
+                    Venmo:
+                </p>
+                <p style="font-size: 25px; margin-bottom: 30px;"> @raffertywong </p>
+                <p style="font-size: 27px; color: #28C101; font-weight: bold; margin-bottom: 0;"> 
+                    <i class="fas fa-dollar-sign" style="padding-right: 5px;"></i>
+                    CashApp: 
+                </p>
+                <p style="font-size: 25px; padding-top: 0px; margin-bottom: 30px;"> $raffertywong </p>
+                <p style="font-size: 35px; font-weight: bold; margin-bottom: 0;"> 
+                    <i class="fab fa-paypal" style="padding-right: 5px; color: #CDCDCD;"></i>
+                    <span style="font-size: 27px; color: #F0F0FF;"> PayPal </span>
+                </p>
+                <div style="width: 330px; height: 185px; background-color: #121212; border-radius: 15px; padding: 20px; display: inline-block;">
+                    <div style="width: 250px; height: 100px; display: inline-block;">
+                    <!--
+                        <div id="paypal-button-container"></div>
+                        <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+                        <script>
+                          paypal.Buttons({
+                              style: {
+                                  shape: 'rect',
+                                  color: 'gold',
+                                  layout: 'vertical',
+                                  label: 'paypal',
+                                  
+                              },
+                              createOrder: function(data, actions) {
+                                  return actions.order.create({
+                                      purchase_units: [{
+                                          amount: {
+                                              value: '3'
+                                          }
+                                      }]
+                                  });
+                              },
+                              onApprove: function(data, actions) {
+                                  return actions.order.capture().then(function(details) {
+                                      alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                                  });
+                              }
+                          }).render('#paypal-button-container');
+                        </script>
+                    -->
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
        <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
