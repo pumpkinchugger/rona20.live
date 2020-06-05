@@ -28,14 +28,14 @@ body {
 
 .container--wrap {
     background-color: #2C2F33;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 5px;
     padding: 10px;
 }
 
 .container--wrap2 {
     background-color: #2C2F33;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 5px;
     padding: 10px;
 }
@@ -57,13 +57,23 @@ body {
     color: #F55 !important;
 }
 
+.row {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.country--stats {
+    display: inline-block;
+    margin: 10px;
+}
+
 @media all and (max-width:991px){
     .row{
-        flex-direction:column;
+        flex-direction: column;
     }
 
     .container--wrap{
-        width: 98vw!important; 
+        width: 96vw!important; 
     }
 }
 
@@ -85,13 +95,13 @@ body {
     transform:translate(-50%,-50%) scale(0);
     background:#1C1C1E;
     width:550px;
-    height:635px;
+    height:600px;
     z-index:2;
     text-align:center;
     padding:20px;
     box-sizing:border-box;
     font-family:"Roobert-Regular";
-    border-radius: 15px;
+    border-radius: 10px;
     color: #F0F0FF;
 }
   

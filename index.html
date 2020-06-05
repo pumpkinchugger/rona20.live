@@ -72,40 +72,15 @@
                     <i class="fab fa-paypal" style="padding-right: 5px; color: #CDCDCD;"></i>
                     <span style="font-size: 27px; color: #F0F0FF;"> PayPal </span>
                 </p>
-                <div style="width: 330px; height: 185px; background-color: #121212; border-radius: 15px; padding: 20px; display: inline-block;">
-                    <div style="width: 250px; height: 100px; display: inline-block;">
-                    <!--
-                        <div id="paypal-button-container"></div>
-                        <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
-                        <script>
-                          paypal.Buttons({
-                              style: {
-                                  shape: 'rect',
-                                  color: 'gold',
-                                  layout: 'vertical',
-                                  label: 'paypal',
-                                  
-                              },
-                              createOrder: function(data, actions) {
-                                  return actions.order.create({
-                                      purchase_units: [{
-                                          amount: {
-                                              value: '3'
-                                          }
-                                      }]
-                                  });
-                              },
-                              onApprove: function(data, actions) {
-                                  return actions.order.capture().then(function(details) {
-                                      alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                                  });
-                              }
-                          }).render('#paypal-button-container');
-                        </script>
-                    -->
-                    </div>
+                <div style="width: 250px; height: 100px; background-color: #121212; border-radius: 10px; padding: 20px; display: inline-block;">
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_donations" />
+                        <input type="hidden" name="business" value="T6WBYUWDFY2AS" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                    </form>
                 </div>
-            </div>
             </div>
         </div>
        <!-- TradingView Widget BEGIN -->
@@ -188,7 +163,7 @@
                             font-weight: 600; text-align: center;">
                             Confirmed
                         </p>
-                        <p style=" font-size: 53px; color: #ffa500; 
+                        <p style=" font-size: 53px; color: #FFA500; 
                             text-align: center; font-weight: 600; margin-bottom: 0;"
                             id="total_critical">
                         </p>
@@ -212,7 +187,7 @@
                             font-weight: 600; text-align: center;">
                             Active
                         </p>
-                        <p style=" font-size: 53px; color: #b2ffff;
+                        <p style=" font-size: 53px; color: #B2FFFF;
                             text-align: center; font-weight: 600; margin-bottom: 0;"
                             id="total_recovered">
                         </p>
@@ -227,13 +202,97 @@
                         <p style="font-size: 35px; color:#F0F0FF; text-align: left;
                             font-weight: bolder;">
                             <i class="fas fa-map-pin" style="padding: 10px; color: #F55;"></i>
-                            Search by country
+                            Country Data
                         </p>
-
-                        <p style="font-size: 15px; color:#F0F0FF; text-align: left;
-                            font-weight: bolder;">
-                            Coming soon...
-                        </p>
+                        <div class="form-group" style="padding-bottom: 10px;">
+                            <div class="col-sm-12">
+                                <select class="form-control" name="Country" id="dropView" onchange="getCountryInfo()">
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div id="countryInfo" style="text-align: center;">
+                            <span id="countryFlag" style="padding-right: 30px; font-size: 40px;"></span>
+                            <span id="countryName" style="font-size: 40px; color: #F0F0FF; font-weight: bolder;"></span>
+                        </div>
+                        <div class="country-stats-container" style="text-align: center; padding-top: 30px;">
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_confirmed" style="background-color: #DBFFE4; color: #40BA8E; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #98FB98; color:#40BA8E;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Confirmed
+                                </div>
+                            </div>
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_deaths" style="background-color: #FBD9D3; color: #EE2400; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #FFB09C; color: #EE2400;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Deaths
+                                </div>
+                            </div>
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_recovered" style="background-color: #B8E2F2; color: #0D97FF; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #89CFF0; color: #0D97FF;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Recovered
+                                </div>
+                            </div>
+                        </div>
+                        <div class="country-stats-container" style="text-align: center; padding-top: 45px;">
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_active" style="background-color: #76F7BF; color: #008081; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #5FDD9D; color:#008081;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Active
+                                </div>
+                            </div>
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_critical" style="background-color: #FFC99D; color: #CC5500; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #FFA472; color: #CC5500;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Critical
+                                </div>
+                            </div>
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_tests" style="background-color: #FFF9AE; color: #DAB600; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #F8ED62; color: #BF9B30;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Tests
+                                </div>
+                            </div>
+                        </div>
+                        <div class="country-stats-container" style="text-align: center; padding-top: 45px;">
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_incidence_rate" style="background-color: #D2D2D2; color: #696969; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #B4B4B4; color:#696969;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Incidence Rate
+                                </div>
+                            </div>
+                            <div class="country--stats" style="width: 29%;">
+                                <div id="country_fatality_ratio" style="background-color: #D2D2D2; color: #696969; font-weight: bold;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; font-size: 35px; padding: 10px;">
+                                </div>
+                                <div class="country-stat-label" style="font-size: 25px; background-color: #B4B4B4; color: #696969;
+                                    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 5px;">
+                                    Case-Ftl. Ratio
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3" style="padding: 0px 5px 10px 5px;">
@@ -296,7 +355,7 @@
                                 Stocks
                             </p>
                             <div class="row">
-                                <div class="col-md-4" style="height: 700px;">
+                                <div class="col-md-4" style="height: 700px; padding-bottom: 10px;">
                                     <!-- TradingView Widget BEGIN -->
                                     <div class="tradingview-widget-container">
                                         <div class="tradingview-widget-container__widget"></div>
@@ -442,7 +501,7 @@
                                     </div>
                                     <!-- TradingView Widget END -->
                                 </div>
-                                <div class="col-md-8" style="height: 700px;">
+                                <div class="col-md-8" style="height: 700px; padding-bottom: 10px;">
                                 <!-- TradingView Widget BEGIN -->
                                     <div class="tradingview-widget-container">
                                         <div class="tradingview-widget-container__widget"></div>
@@ -581,8 +640,10 @@
             </div>
         </div>
         <p class="text-center" style="padding-top: 5px;">
-            <small><a class="text-muted" href="https://twitter.com/rafferty_wong"
-                >rona20.live | Rafferty Wong - 2020</a>
+            <small>
+                <a class="text-muted" href="https://twitter.com/rafferty_wong" target="_blank">
+                    rona20.live | Rafferty Wong - 2020
+            </a>
             </small>
         </p>
         <script src="js/cov.js"></script>
