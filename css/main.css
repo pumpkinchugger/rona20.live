@@ -62,8 +62,8 @@ body {
 }
 
 .row {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .country--stats {
@@ -71,27 +71,43 @@ body {
     margin: 10px;
 }
 
-@media all and (max-width:991px){
-    .row{
-    flex-direction:column;
+.country--stats2 {
+    display: inline-block;
+    margin: 10px;
+}
+
+
+@media all and (max-width:991px) {
+    .row {
+        flex-direction:column;
     }
 
-    .container--wrap{
-    width:98vw!important;
+    .container--wrap {
+        width: 95vw;
     }
  }     
 
-@media all and (min-width: 600px)
-{
-    .country--stats{
-    width: 29%;
+@media all and (min-width: 600px) {
+    .country--stats {
+        min-width: 29%;
     }
+    .country--stats2 {
+        min-width: 45%;
+    }
+    
 }
 
 @media all and (max-width: 600px) {
-    .country--stats  {
-    width: 100%;
-    padding-right: 20px;
+    .country--stats {
+        width: 100%;
+        padding-right: 20px;
+    }
+    .country--stats2 {
+        width: 100%;
+        padding-right: 20px;
+    }
+    .row {
+        padding-left: 2px;
     }
 }
 
