@@ -20,6 +20,10 @@ body {
     color :#0E76A8;
 }
 
+.fa-instagram:hover {
+    color: #C13584;
+}
+
 .ImageBorder {
     border-style: solid;
     border-width: 5px;
@@ -69,11 +73,25 @@ body {
 
 @media all and (max-width:991px){
     .row{
-        flex-direction: column;
+    flex-direction:column;
     }
 
     .container--wrap{
-        width: 96vw!important; 
+    width:98vw!important;
+    }
+ }     
+
+@media all and (min-width: 600px)
+{
+    .country--stats{
+    width: 29%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .country--stats  {
+    width: 100%;
+    padding-right: 20px;
     }
 }
 
@@ -94,8 +112,8 @@ body {
     left:50%;
     transform:translate(-50%,-50%) scale(0);
     background:#1C1C1E;
-    width:550px;
-    height:600px;
+    width:450px;
+    height:550px;
     z-index:2;
     text-align:center;
     padding:20px;

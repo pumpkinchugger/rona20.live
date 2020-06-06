@@ -15,14 +15,21 @@ var fillCountryMenu = async() => {
   }
 
   // fill select menu with countries
-  var world_list = report.regions.world.list;
+  var world_list = report.regions.world.list.sort(function(a, b) {
+    return (a.country.toUpperCase() < b.country.toUpperCase()) ? -1 : (a.country.toUpperCase() > b.country.toUpperCase()) ? 1 : 0;
+  });
   for(var i in world_list){
-  var countryObject = world_list[i];
-  var x = JSON.stringify(countryObject.country);
-  x = x.replace(/^"|"$/g, '');
-  var o = new Option(x, i);
-  $(o).html(x);
-  $("select").append(o);
+    var countryObject = world_list[i];
+    var x = JSON.stringify(countryObject.country);
+    x = x.replace(/^"|"$/g, '');
+    // set US as default selected
+    if(countryObject.country == "United States"){
+      var o = new Option(x, i, false, true);
+    } else {
+      var o = new Option(x, i,);
+    }
+    $(o).html(x);
+    $("select").append(o);
   }
 
   // fill default selected country info
@@ -49,17 +56,20 @@ var getCountryInfo = async() => {
   var userOpt = d.options[d.selectedIndex].text;
   for(var i in world_list){
     var countryObject = world_list[i];
+    // look for selected country
     if(countryObject.country == userOpt){
       document.getElementById("countryName").innerText = userOpt;
       $('#countryFlag').prepend(`
         <i class="flag-icon flag-icon-${countryObject.country_code} rounded">
       `);
+      // update/set country statistics
       document.getElementById("country_confirmed").textContent = countryObject.confirmed.toLocaleString('en-US')
       document.getElementById("country_deaths").textContent = countryObject.deaths.toLocaleString("en-US")
       document.getElementById("country_recovered").textContent = countryObject.recovered.toLocaleString("en-US")
       document.getElementById("country_active").textContent = (countryObject.confirmed - (countryObject.deaths + countryObject.recovered)).toLocaleString('en-US')
       document.getElementById("country_critical").textContent = countryObject.critical.toLocaleString("en-US")
       document.getElementById("country_tests").textContent = countryObject.tests.toLocaleString("en-US")
+      // round incidence rate/fatality ratio
       var incidenceNum = parseFloat(countryObject.Incidence_Rate);
       var roundedIncidence = incidenceNum.toFixed(2);
       document.getElementById("country_incidence_rate").textContent = roundedIncidence;
