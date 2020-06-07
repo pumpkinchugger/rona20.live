@@ -93,8 +93,7 @@ body {
     }
     .country--stats2 {
         min-width: 45%;
-    }
-    
+    } 
 }
 
 @media all and (max-width: 600px) {
