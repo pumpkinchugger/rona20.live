@@ -66,6 +66,17 @@ body {
     padding-right: 10px;
 }
 
+.row1{
+    text-align:center;
+    margin:0 auto;
+}
+
+.row1 .col-md-3{
+   display:inline-block;
+   vertical-align: middle;
+   float: none;
+}
+
 .country--stats {
     display: inline-block;
     margin: 10px;
